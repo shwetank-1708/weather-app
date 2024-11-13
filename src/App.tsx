@@ -75,7 +75,7 @@ function App() {
             />
             <button
               onClick={getWeatherDetails}
-              className="bg-sky-500 m-5 p-5 text-lg rounded-full hover:text-white"
+              className="bg-red-600 m-5 p-5 text-lg rounded-full hover:text-white"
             >
               <IoSearch />
             </button>
