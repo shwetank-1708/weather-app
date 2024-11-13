@@ -6,6 +6,10 @@ import drizzle from "./assets/drizzle.gif";
 import foggy from "./assets/foggy.gif";
 import clouds from "./assets/clouds.gif";
 import rain from "./assets/rain.gif";
+import feelsLike from "./assets/feels_like.gif";
+import humidity from "./assets/humidity.gif";
+import wind from "./assets/wind.gif";
+import location from "./assets/location.gif";
 
 interface WeatherData {
   main: {
@@ -75,7 +79,7 @@ function App() {
             />
             <button
               onClick={getWeatherDetails}
-              className="bg-red-600 m-5 p-5 text-lg rounded-full hover:text-white"
+              className="bg-sky-500 m-5 p-5 text-lg rounded-full hover:text-white"
             >
               <IoSearch />
             </button>
@@ -94,6 +98,40 @@ function App() {
               <p>{weatherData.sys.country}</p>
             </div>
           )}
+
+          <div className="flex flex-wrap justify-around">
+            <div className="flex items-center">
+              <img src={feelsLike} className="w-[50px]" />
+              <div>
+                <p>Feels Like</p>
+                <p>20 °C</p>
+              </div>
+            </div>
+
+            <div className="flex items-center">
+              <img src={humidity} className="w-[50px]" />
+              <div>
+                <p>94 %</p>
+                <p>Humidity</p>
+              </div>
+            </div>
+
+            <div className="flex items-center">
+              <img src={wind} className="w-[50px]" />
+              <div>
+                <p>2.57 Km/h</p>
+                <p>Wind Speed</p>
+              </div>
+            </div>
+
+            <div className="flex items-center">
+              <img src={location} className="w-[50px]" />
+              <div>
+                <p>Lat: - 29</p>
+                <p>Long: - 77</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
