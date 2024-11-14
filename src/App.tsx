@@ -14,10 +14,19 @@ import location from "./assets/location.gif";
 interface WeatherData {
   main: {
     temp: number;
+    feels_like: number;
+    humidity: number;
   };
   weather: Array<{
     main: string;
   }>;
+  wind: {
+    speed: number;
+  };
+  coord: {
+    lat: number;
+    lon: number;
+  };
   name: string;
   sys: {
     country: string;
@@ -64,6 +73,8 @@ function App() {
       setWeatherData(null);
       setError("Invalid City Name");
     }
+
+    console.log(weatherData);
   };
 
   return (
@@ -92,46 +103,56 @@ function App() {
           {weatherData && (
             <div className="flex flex-col items-center gap-2">
               <img className="w-[200px]" src={img} />
-              <p>{Math.round(weatherData.main.temp)} °C</p>
-              <p>{weatherData.weather[0].main}</p>
+              <p>{Math.round(weatherData.main?.temp)} °C</p>
+              <p>{weatherData.weather[0]?.main}</p>
               <p>{weatherData.name}</p>
-              <p>{weatherData.sys.country}</p>
+              <p>{weatherData.sys?.country}</p>
+
+              <div className="flex flex-wrap justify-around mt-5">
+                <div className="flex items-center">
+                  <img src={feelsLike} className="w-[50px]" />
+                  <div>
+                    <p>Feels Like</p>
+                    <p>{weatherData.main?.feels_like ?? "N/A"} °C</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <img src={humidity} className="w-[50px]" />
+                  <div>
+                    <p>{weatherData.main?.humidity ?? "N/A"} %</p>
+                    <p>Humidity</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <img src={wind} className="w-[50px]" />
+                  <div>
+                    <p>{weatherData.wind?.speed ?? "N/A"} Km/h</p>
+                    <p>Wind Speed</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center">
+                  <img src={location} className="w-[50px]" />
+                  <div>
+                    <p>
+                      Lat: -{" "}
+                      {weatherData.coord?.lat
+                        ? Math.round(weatherData.coord.lat)
+                        : "N/A"}
+                    </p>
+                    <p>
+                      Long: -{" "}
+                      {weatherData.coord?.lon
+                        ? Math.round(weatherData.coord.lon)
+                        : "N/A"}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
-
-          <div className="flex flex-wrap justify-around">
-            <div className="flex items-center">
-              <img src={feelsLike} className="w-[50px]" />
-              <div>
-                <p>Feels Like</p>
-                <p>20 °C</p>
-              </div>
-            </div>
-
-            <div className="flex items-center">
-              <img src={humidity} className="w-[50px]" />
-              <div>
-                <p>94 %</p>
-                <p>Humidity</p>
-              </div>
-            </div>
-
-            <div className="flex items-center">
-              <img src={wind} className="w-[50px]" />
-              <div>
-                <p>2.57 Km/h</p>
-                <p>Wind Speed</p>
-              </div>
-            </div>
-
-            <div className="flex items-center">
-              <img src={location} className="w-[50px]" />
-              <div>
-                <p>Lat: - 29</p>
-                <p>Long: - 77</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>
