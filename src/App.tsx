@@ -80,7 +80,7 @@ function App() {
   return (
     <>
       <div className="h-[100vh] w-full bg-sky-500 flex justify-center items-center">
-        <div className="max-h-[80vh] w-[60%] bg-sky-50 p-11 rounded-3xl">
+        <div className="max-h-[80vh] w-[100%] md:w-[60%] bg-sky-50 p-11 rounded-3xl">
           <div className="flex justify-center">
             <input
               value={city}
@@ -103,12 +103,16 @@ function App() {
           {weatherData && (
             <div className="flex flex-col items-center gap-2">
               <img className="w-[200px]" src={img} />
-              <p>{Math.round(weatherData.main?.temp)} °C</p>
-              <p>{weatherData.weather[0]?.main}</p>
-              <p>{weatherData.name}</p>
-              <p>{weatherData.sys?.country}</p>
+              <p className="text-2xl font-bold">
+                {Math.round(weatherData.main?.temp)} °C
+              </p>
+              <p className="text-2xl font-bold">
+                {weatherData.weather[0]?.main}
+              </p>
+              <p className="text-2xl font-bold">{weatherData.name}</p>
+              <p className="text-2xl font-bold">{weatherData.sys?.country}</p>
 
-              <div className="flex flex-wrap justify-around mt-5">
+              <div className="grid grid-cols-2 justify-around mt-5 gap-11">
                 <div className="flex items-center">
                   <img src={feelsLike} className="w-[50px]" />
                   <div>
