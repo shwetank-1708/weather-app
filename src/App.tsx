@@ -80,7 +80,7 @@ function App() {
   return (
     <>
       <div className="h-[100vh] w-full bg-sky-500 flex justify-center items-center">
-        <div className="sm:h-[80vh] h-[100vh] w-[100%] md:w-[60%] bg-sky-50 p-11 rounded-3xl">
+        <div className="sm:max-h-[80vh] max-h-[100vh] w-[100%] md:w-[60%] bg-sky-50 p-11 rounded-3xl">
           <div className="flex justify-center">
             <input
               value={city}
@@ -97,7 +97,7 @@ function App() {
           </div>
 
           <div className="flex justify-center">
-            <p>{error}</p>
+            <p className="font-bold text-xl">{error}</p>
           </div>
 
           {weatherData && (
